@@ -42,3 +42,48 @@ int main() {
 }
 
 ```
+# SIngleton 
+``` cpp
+// Online C++ compiler to run C++ program online
+#include <iostream>
+class Singleton
+{
+    private:
+    static Singleton* instance ;
+    //static std::once_flag initFlag;
+        Singleton ()
+        {
+            std::cout<< "singleton object called" << std::endl;
+        }
+    public: 
+static Singleton* getInstance()
+    {
+        instance = new Singleton();
+        return instance ;
+    }
+    void callmethod();
+};
+
+void Singleton :: callmethod()
+{
+    std::cout << "Sigleton instance called" << std::endl;
+}
+// Initialize static members
+Singleton* Singleton::instance = nullptr;
+//std::once_flag Singleton::initFlag
+
+int main() {
+    Singleton * newinstance1 = Singleton::getInstance();
+    newinstance1->callmethod();
+    Singleton * newinstance2 = Singleton::getInstance();
+    if (newinstance2 == newinstance1)
+    {
+        std::cout << "both object is same";
+    }
+   // Singleton Singleton1;
+                       //if we are createing object then return error of
+                        //: 'Singleton::Singleton()' is private within this context ;; 37 |     Singleton Singleton1;
+   // Singleton1.callmethod();
+    return 0;
+}
+```
