@@ -46,6 +46,7 @@ int main() {
 ``` cpp
 // Online C++ compiler to run C++ program online
 #include <iostream>
+#include <mutex>
 class Singleton
 {
     private:
@@ -58,7 +59,8 @@ class Singleton
     public: 
 static Singleton* getInstance()
     {
-        instance = new Singleton();
+        if (instance == nullptr)            // here the nullptr check required;
+            instance = new Singleton();
         return instance ;
     }
     void callmethod();
