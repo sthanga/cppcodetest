@@ -89,3 +89,21 @@ int main() {
     return 0;
 }
 ```
+## Meson.build
+``` meson.build
+// explain details
+project(
+    'entity-manager',        # project name 
+    'cpp',                   # Language used      
+    default_options: [       # These are the default compiler and build settings
+        'warning_level=3',   # Enable most compiler warnings (-Wall -Wextra and more).
+        'werror=true',       # Treat all warnings as errors (-Werror).
+        'cpp_std=c++20'      # Use C++20 standard for compiling (adds modern language features).
+    ],
+    license: 'Apache-2.0',   # This declares the project license — important for compliance and packaging (e.g., Debian/Yocto metadata generation).
+    version: '0.1',          # This sets the project version
+    meson_version: '>=0.58.0', # This ensures the Meson version being used is at least 0.58.0
+)
+
+```
+
