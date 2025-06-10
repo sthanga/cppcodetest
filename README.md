@@ -105,5 +105,32 @@ project(
     meson_version: '>=0.58.0', # This ensures the Meson version being used is at least 0.58.0
 )
 
+add_project_arguments('-Wno-psabi', language: 'cpp')   # -Wpsabi is a GCC warning about "Public Symbol ABI changes".
+                                                       # It warns you when the Application Binary Interface (ABI) of symbols (functions, structs, etc.)
+                                                       # has changed due to compiler upgrades or architecture differences.
+                                                       # It’s often triggered when using newer GCC versions or building for ARM/AArch64 platforms.
+
+boost_args = [
+    '-DBOOST_SYSTEM_NO_DEPRECATED',
+    '-DBOOST_ERROR_CODE_HEADER_ONLY',
+    '-DBOOST_NO_RTTI',
+    '-DBOOST_NO_TYPEID',
+    '-DBOOST_ALL_NO_LIB',
+    '-DBOOST_ALLOW_DEPRECATED_HEADERS'
+]
+build_tests = get_option('tests')
+cpp = meson.get_compiler('cpp')
+boost = dependency('boost', required: false)
+if not boost.found()
+     subproject('boost', required: false)
+     boost = declare_dependency(
+         include_directories: 'subprojects/boost_1_71_0',
+     )
+     boost = boost.as_system('system')
+endif
+if get_option('fru-device')
+    i2c = cpp.find_library('i2c')
+endif
+
 ```
 
