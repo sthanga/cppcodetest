@@ -133,4 +133,21 @@ if get_option('fru-device')
 endif
 
 ```
+### namespace
+``` cpp
+#include <iostream>
+#include <filesystem>
+namespace fs = std::filesystem;    // alias is created here
 
+int main() {
+    fs::path p = "/tmp/test.txt";
+
+    if (fs::exists(p)) {
+        std::cout << "File exists: " << p << std::endl;
+    } else {
+        std::cout << "File not found." << std::endl;
+    }
+    return 0;
+}
+
+```
