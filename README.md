@@ -151,3 +151,109 @@ int main() {
 }
 
 ```
+### C++ dynamic memory allocation concept:
+
+Yes, in C++, the `new` keyword is used to dynamically allocate memory for **any data type** — whether it's a **primitive** (like `int`, `float`), a **class**, a **struct**, or an **array**.
+
+---
+
+## ✅ General Syntax of `new`
+
+```cpp
+Type* ptr = new Type;
+```
+
+This dynamically allocates memory on the **heap**, and returns a pointer to the object.
+
+
+## 🔹 1. **For Primitive Data Types**
+
+```cpp
+int* pInt = new int;        // Allocates memory for one int
+*pInt = 42;
+
+float* pFloat = new float(3.14); // Initializes float
+```
+
+> Don't forget to `delete pInt;` and `delete pFloat;` to avoid memory leaks.
+
+---
+
+## 🔹 2. **For Arrays**
+
+```cpp
+int* arr = new int[5];  // Allocates array of 5 ints
+arr[0] = 1; arr[1] = 2; // ...
+
+// Free the memory
+delete[] arr;
+```
+
+Note: Arrays must be deallocated using `delete[]`.
+
+## 🔹 3. **For Structs and Classes**
+
+### Struct:
+
+```cpp
+struct Point {
+    int x;
+    int y;
+};
+
+Point* pt = new Point;         // No constructor here
+pt->x = 10;
+pt->y = 20;
+```
+
+### Class:
+
+```cpp
+class Person {
+public:
+    Person(std::string n) : name(n) {}
+    std::string name;
+};
+
+Person* p = new Person("Alice");
+std::cout << p->name << std::endl;
+delete p;
+```
+## 🔹 4. **Using `new` with `auto`**
+
+```cpp
+auto ptr = new double(9.81);  // type is double*
+```
+
+## ❗ Important: Always Pair `new` with `delete`
+
+If you use `new`, you **must** use `delete` (or `delete[]`) to free the memory:
+
+```cpp
+int* p = new int(10);
+// ...
+delete p;  // prevent memory leak
+```
+
+## 🔹 5. **Modern C++: Prefer `std::unique_ptr` or `std::shared_ptr`**
+
+Instead of raw `new/delete`, use smart pointers to manage memory automatically:
+
+```cpp
+#include <memory>
+
+auto ptr = std::make_unique<int>(100);      // C++14
+auto shared = std::make_shared<int>(200);   // C++11
+
+// No need to call delete
+```
+
+| Use Case           | Syntax Example                  |
+| ------------------ | ------------------------------- |
+| Primitive          | `int* p = new int(5);`          |
+| Array              | `int* arr = new int[10];`       |
+| Class/Struct       | `MyClass* obj = new MyClass();` |
+| Delete             | `delete p;`, `delete[] arr;`    |
+| Modern (preferred) | `std::make_unique<Type>(...)`   |
+
+Let me know if you want an example managing dynamic objects in a loop or passing them between functions.
