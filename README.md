@@ -133,7 +133,7 @@ if get_option('fru-device')
 endif
 
 ```
-### namespace
+## namespace, using
 ``` cpp
 #include <iostream>
 #include <filesystem>
@@ -149,6 +149,17 @@ int main() {
     }
     return 0;
 }
+/*****************************************************************************
+using phosphor::logging::commit;
+using phosphor::logging::elog;
+using phosphor::logging::entry;
+using phosphor::logging::level;
+using phosphor::logging::log;
+🔹 What is using in C++?
+The using directive or declaration tells the compiler:
+
+“From now on, I’ll refer to this name without writing the full namespace path.”
+**********************************************************************************/
 
 ```
 ### C++ dynamic memory allocation concept:
