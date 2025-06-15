@@ -268,3 +268,64 @@ auto shared = std::make_shared<int>(200);   // C++11
 | Modern (preferred) | `std::make_unique<Type>(...)`   |
 
 Let me know if you want an example managing dynamic objects in a loop or passing them between functions.
+
+## vector , iterator, file open and json file parse;
+```cpp
+#include <iostream>
+#include <fstream>    // file operation
+#include <vector>     // vector
+#include <nlohmann/json.hpp>  //jsonfile parse;
+int main()
+{
+    std::vector<int> ciperlist;
+
+    std::ifstream jsonFile("ciper.json");
+
+    if (!jsonFile.is_open())
+        std::cout<< "File Not openalbe" << std::endl;
+    else
+        std::cout<< "File opened" << std::endl;
+
+    auto data = nlohmann::json::parse(jsonFile);
+
+    ciperlist.push_back(0x00);
+    std::string cipher = "cipher";
+    for (const auto& list : data)
+    {
+        ciperlist.push_back(list.value(cipher, 0));
+    }
+    for (auto& ret : ciperlist)
+        std::cout<< ret << std::endl;
+/*******************another method iterate*****************
+      for (int val : ciperlist)
+      {
+          std::cout << val << " ";
+      }
+      std::cout << std::endl;
+**********************************************************/
+}
+/*
+output
+user:~/Videos/cpptestcode/ifstream$ ./ifstm 
+File opened
+0
+12
+13
+14
+15
+
+for another method:
+user@BLRTSL01069:~/Videos/cpptestcode/ifstream$ ./ifstm 
+File opened
+0 12 13 14 15 
+*/
+```
+#### ciper.json
+```json
+[
+  { "cipher": 12 },
+  { "cipher": 13 },
+  { "cipher": 14 },
+  { "cipher": 15 }
+]
+```
