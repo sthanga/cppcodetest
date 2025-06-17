@@ -329,3 +329,92 @@ File opened
   { "cipher": 15 }
 ]
 ```
+## VECTOR 
+``` cpp
+#include <vector>
+#include <iterator>
+
+//Creating an empty vector
+std::vector<int> v1;
+std::vector<int> test = {1,2,3,5,6,7};     //vector<Type> Name:
+//    for (auto &data : v1)
+//        std::cout<<data<<std::endl;     // this way also print it.
+std::vector<int>std::Iterator it;
+for (it)
+
+```
+## vector full method try
+``` cpp
+// Online C++ compiler to run C++ program online
+#include <iostream>
+#include <vector>
+#include <iterator>
+#include <map>
+#include <stack>
+#include <queue>
+#include <list>
+#include <set>
+#include <algorithm>
+
+int main() {
+    std::vector<int> v1;
+    v1 ={ 1,2,3,4,5,6,7,8};
+    for (auto &data : v1)
+        std::cout<<data <<" ";
+    std::cout<< "Vector initialized element" <<std::endl;
+    /*"push_back()"  method is used to insert a element last*/
+    v1.push_back(20);      // here the new element inserted
+    for (auto &data : v1)
+        std::cout<<data <<" ";
+    std::cout<< "-- insert last 20" <<std::endl;
+    
+    /*"pop_back()"  method is used to remove last element */
+    v1.pop_back();
+    for (auto &data : v1)
+        std::cout<<data <<" ";
+    std::cout<< "-- removed last 20" <<std::endl;
+    /*"size()" return the size of the vector */
+    std::cout<< "vector size : " << v1.size() << std::endl;
+    /*"size()" return the Max hold size */
+    std::cout<< "Max hold size : " << v1.max_size()<< std::endl;
+    v1.resize(9);
+    std::cout<< "vector resize : " << v1.size() << std::endl;
+        for (auto &data : v1)
+        std::cout<<data <<" ";
+    std::cout<< "-- resize of vector" <<std::endl;
+    std::cout<<"-- vector check :" << v1.empty() <<std::endl;
+    // return 0 if element loaded; or not zero  if empty;
+    std::cout<<"operator[3] :"<<v1[3] << "-- at(5) :" << v1.at(5) <<std::endl;
+    std::cout<<"front ():"<<v1.front() << "-- end ():" << *(--v1.end()) <<std::endl;
+    // like rbegin(), rend(), cbegin, cend, crbegin, crend, emplace(), emplace_back(), assign(), capacity(), reserve(), shrink_to_fit(), data(), get_allocator, swap() method available.
+    v1.insert(v1.begin() + 2, 32);
+    for (auto &data : v1)
+        std::cout<<data <<" ";
+    std::cout<<"--insert 32 :"<<std::endl;
+    v1.erase(v1.begin() + 2);
+    for (auto &data : v1)
+        std::cout<<data <<" ";
+     std::cout<<"-- Erased 32:"<<std::endl;  
+    v1.clear();
+    for (auto &data : v1)
+        std::cout<<data <<" ";
+     std::cout<<"-- clear():"<<std::endl;  
+    return 0;
+}
+/* outputs
+1 2 3 4 5 6 7 8 Vector initialized element
+1 2 3 4 5 6 7 8 20 -- insert last 20
+1 2 3 4 5 6 7 8 -- removed last 20
+vector size : 8
+Max hold size : 2305843009213693951
+vector resize : 9
+1 2 3 4 5 6 7 8 0 -- resize of vector
+-- vector check :0
+operator[3] :4-- at(5) :6
+front ():1-- end ():0
+1 2 32 3 4 5 6 7 8 0 --insert 32 :
+1 2 3 4 5 6 7 8 0 -- Erased 32:
+-- clear():
+*/
+
+```
