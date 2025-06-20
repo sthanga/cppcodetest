@@ -418,3 +418,26 @@ front ():1-- end ():0
 */
 
 ```
+## Template Usage:
+``` cpp
+// C++ templates allow you to write generic, type-independent code.
+// You can use templates to define functions or classes that work with any data type or even constant values.
+
+#include <iostream>
+
+template <typename T>    // template apply
+T add( T a, T b)
+{
+    return a+b;
+}
+int main() {
+    
+   std::cout<< add (10, 20) << std::endl;
+   std::cout<< add(43.33, 44.33) << std::endl;
+   return 0;
+}
+/* output:
+30
+87.66
+*/
+```
