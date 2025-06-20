@@ -441,3 +441,111 @@ int main() {
 87.66
 */
 ```
+### ✅ C++ Templates — Complete Beginner-Friendly Explanation
+
+C++ templates allow you to write **generic**, **type-independent** code. You can use templates to define **functions** or **classes** that work with any data type or even constant values.
+
+---
+
+## 🔷 1. Function Template (Type-based)
+
+### ✨ Example:
+
+```cpp
+template <typename T>
+T add(T a, T b)
+{
+    return a + b;
+}
+```
+
+### ✅ Usage:
+
+```cpp
+int result1 = add<int>(5, 3);         // 8
+double result2 = add<double>(2.5, 4); // 6.5
+```
+
+* `T` is a placeholder for a data type (`int`, `double`, `float`, etc.)
+* Compiler automatically replaces `T` based on usage.
+
+---
+
+## 🔷 2. Class Template
+
+### ✨ Example:
+
+```cpp
+template <typename T>
+class Box
+{
+public:
+    T value;
+    void set(T val) { value = val; }
+    T get() { return value; }
+};
+```
+
+### ✅ Usage:
+
+```cpp
+Box<int> intBox;
+intBox.set(10);
+std::cout << intBox.get();  // 10
+
+Box<std::string> strBox;
+strBox.set("hello");
+std::cout << strBox.get();  // hello
+```
+
+---
+
+## 🔷 3. Non-Type Template Parameter (like your case)
+
+### ✨ Example:
+
+```cpp
+template <int N>
+void printNTimes()
+{
+    for (int i = 0; i < N; ++i)
+    {
+        std::cout << "Hello\n";
+    }
+}
+```
+
+### ✅ Usage:
+
+```cpp
+printNTimes<3>(); // Prints "Hello" 3 times
+```
+
+* `N` is an integer constant known at **compile-time**.
+* This is exactly what your `template <int family>` is doing.
+
+---
+
+## 🛠 Common Use Cases
+
+| Template Type          | Used For                                                            |
+| ---------------------- | ------------------------------------------------------------------- |
+| `template<typename T>` | Generic containers, algorithms (e.g., `std::vector<T>`)             |
+| `template<int N>`      | Compile-time values like array sizes, address families, loop counts |
+| Class templates        | `std::vector`, `std::map`, `std::unique_ptr`, etc.                  |
+| Function templates     | `std::swap`, `std::sort`, etc.                                      |
+
+---
+
+## 📌 Summary
+
+| Concept                | Meaning                                                    |
+| ---------------------- | ---------------------------------------------------------- |
+| `template<typename T>` | T is a type (e.g., `int`, `double`)                        |
+| `template<int N>`      | N is a compile-time constant (e.g., array size, IP family) |
+| `template<class T>`    | Same as `typename` — just older syntax                     |
+
+---
+
+Would you like a full example using both class and function templates together?
+
